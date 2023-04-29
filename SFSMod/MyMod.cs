@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using ModLoader;
 using ModLoader.Helpers;
+using SFS.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,11 +16,11 @@ namespace SFSMod
         public static MyMod Main;
 
         // this ModNameID can be whatever you want
-        public override string ModNameID => "ModCode";
+        public override string ModNameID => "PartEditorInstaller";
 
-        public override string DisplayName => "My Mod";
+        public override string DisplayName => "PartEditor Installer";
 
-        public override string Author => "105Code";
+        public override string Author => "0xNim";
 
         public override string MinimumGameVersionNecessary => "0.3.7";
 
@@ -27,7 +28,7 @@ namespace SFSMod
         // Reference link: https://semver.org/ 
         public override string ModVersion => "1.0.0";
 
-        public override string Description => "Mod skeleton";
+        public override string Description => "This Mod will dissapear on next launch";
 
         // With this variable you can define if your mods needs the others mods to work
         public override Dictionary<string, string> Dependencies
@@ -41,6 +42,8 @@ namespace SFSMod
         // Here you can specify which mods and version you need
         private Dictionary<string, string> _dependencies = new Dictionary<string, string>() {};
 
+        // 
+        public static FolderPath modFolder;
 
         public override void Early_Load()
         {
@@ -57,9 +60,9 @@ namespace SFSMod
             // This function finds all the patches you have created and runs them
             harmony.PatchAll();
 
-            // you can subscribe to scene changes
-            SceneHelper.OnWorldSceneLoaded += this.OnWorld;
-            SceneHelper.OnBuildSceneLoaded += this.OnBuild;
+            // This allows other classes to use the modFolder 
+            modFolder = new FolderPath(ModFolder);
+            
 
         }
 
@@ -67,21 +70,9 @@ namespace SFSMod
         {
             Debug.Log("Running Load code");
 
-            // init your keybindings
+            // download files
             Settings.Setup();
 
-        }
-
-        // When the world scene is loaded
-        private void OnWorld()
-        {
-            Debug.Log("On World");
-        }
-
-        // When the Build scene is loaded
-        private void OnBuild()
-        {
-            Debug.Log("On Build");
         }
 
     }

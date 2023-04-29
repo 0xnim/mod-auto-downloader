@@ -2,34 +2,51 @@
 using SFS.Input;
 using SFS.IO;
 using SFS.Parsers.Json;
+using System.IO;
+using System.Net;
 using UnityEngine;
 
 namespace SFSMod
 {
-	public class Settings : ModKeybindings
+	public class Settings 
 	{
 
 
 		public static Settings Main;
 
-		public static void Setup()
+        public static void DownloadFile(string url, string destinationFilePath)
+        {
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(url, destinationFilePath);
+            }
+        }
+        public static void DeleteFolder(string folderPath)
+        {
+            Directory.Delete(folderPath, true);
+        }
+
+
+
+        public static void Setup()
 		{
-			// Again for the singleton pattern. To use keybindings values anywhere in your mod.
-			Main = SetupKeybindings<Settings>(MyMod.Main);
-		}
+            // Again for the singleton pattern. To use keybindings values anywhere in your mod.
 
-		public override void CreateUI()
-		{
-			// this sections load default keybindings
-			Settings keySettings = new Settings();
 
-			// this creates UI elements in the Settings menu
-			base.CreateUI_Text("My Mod");
-			base.CreateUI_Keybinding(Test, keySettings.Test, "Test Key");
+            string modFolderPath = MyMod.modFolder.ToString();
+            string modFolderPath2 = modFolderPath.Replace("SFSMod", "");
 
-		}
+            Debug.Log(modFolderPath);
+            DownloadFile("https://github.com/cucumber-sp/UITools/releases/latest/download/UITools.dll", modFolderPath2+ "UITools.dll");
+            DownloadFile("https://github.com/cucumber-sp/PartEditor/releases/download/v1.0/PartEditor.dll", modFolderPath2+ "PartEditor.dll");
 
-		// define your key bindings like this
-		public KeybindingsPC.Key Test = KeyCode.T;
-	}
+            DeleteFolder(modFolderPath);
+
+
+
+        }
+
+
+
+    }
 }
