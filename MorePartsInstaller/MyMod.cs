@@ -5,7 +5,7 @@ using SFS.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SFSMod
+namespace MorePartsInstaller
 {
     /**
      * You only need to implement the Mod class once in your mod. The Mod class is how 
@@ -16,9 +16,9 @@ namespace SFSMod
         public static MyMod Main;
 
         // this ModNameID can be whatever you want
-        public override string ModNameID => "PartEditorInstaller";
+        public override string ModNameID => "MorePartsInstaller";
 
-        public override string DisplayName => "PartEditor Installer";
+        public override string DisplayName => "More Parts Mod Installer";
 
         public override string Author => "0xNim";
 

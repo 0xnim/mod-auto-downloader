@@ -20,9 +20,9 @@ Next, you need to go to the `Spaceflight Simulator Game\Spaceflight Simulator_Da
 - UnityEngine.UIElementsModule.dll
 - UnityEngine.UIModule.dll
 
-Finally, you need to create a copy of `env.props.example` and name it `env.props`. Inside the file you need to change the `ModsFolder` variable to the path where you have your mods folder. This is used to automatically start your game when you compile the Mod. Now you can double click on `SFSMod.sln` and Visual Studio will open the project and if everything is ok and there are no errors you can hit `Run` to start the game with your mod
+Finally, you need to create a copy of `env.props.example` and name it `env.props`. Inside the file you need to change the `ModsFolder` variable to the path where you have your mods folder. This is used to automatically start your game when you compile the Mod. Now you can double click on `MorePartsInstaller.sln` and Visual Studio will open the project and if everything is ok and there are no errors you can hit `Run` to start the game with your mod
 
-**Note:** If you want to change the project name to the name of your mod, change "SFSMod" in every file name, folder name and text in this project.
+**Note:** If you want to change the project name to the name of your mod, change "MorePartsInstaller" in every file name, folder name and text in this project.
 
 ## How to start hacking 
 
